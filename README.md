@@ -4,7 +4,7 @@ PMC Chat Extensions is a chrome(and soon to be Firefox) extension that adds them
 Currently it only adds a Dark theme, but in the future I want to add more themes, along with a custom theme option.
 
 ----
-## [Download Link](http://test.com)
+## [Download Link](http://minerionstudios.com/pmc_chat_extensions/)
 ----
 
 ## Planned additions (In no particular order)
