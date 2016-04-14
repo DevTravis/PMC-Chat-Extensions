@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
   <app appid='iaolkbhdicemchhopcnipmajaapbbfng'>
-    <updatecheck codebase='https://github.com/DeathGameDev/PMC-Chat-Extensions/raw/master/PMC_Chrome_Extension.crx' version='0.35' />
+    <updatecheck codebase='https://github.com/DeathGameDev/PMC-Chat-Extensions/raw/master/PMC_Chrome_Extension.crx' version='0.4' />
   </app>
 </gupdate>
