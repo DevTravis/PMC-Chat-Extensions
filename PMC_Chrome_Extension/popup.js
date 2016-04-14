@@ -21,7 +21,14 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("toggleTheme").addEventListener('change', toggleTheme);
     document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
     document.getElementById("toggleEmotes").addEventListener('change', toggleEmotes);
+    
+    setCurrVersion();
 });
+
+function setCurrVersion(){
+    var manifest = chrome.runtime.getManifest();
+    document.getElementById("currVersion").innerHTML = manifest.version;
+}
 
 function baseValCheck(){
     //Essentially seeing if this is the first time we're running it.
