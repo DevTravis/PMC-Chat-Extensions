@@ -79,7 +79,7 @@ function getLink(lnk){
 function text2Emote(txt){
     var old = txt;
     for(var i = 0; i < rawEmotes.length; i++){
-        var _new = old.replace(rawEmotes[i], newEmotes[i]);
+        var _new = old.replaceAll(rawEmotes[i], newEmotes[i]);
         old = _new;
     }
     var end = old;
@@ -151,3 +151,8 @@ function sendMsg(txt){
         });
     });
 }
+
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
