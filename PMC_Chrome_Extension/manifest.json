@@ -3,7 +3,7 @@
 
   "name": "PMC Chat Extension",
   "description": "This extension adds themes for PMC Chat, along with a toggle for 3D heads.",
-  "version": "0.3",
+  "version": "0.35",
 
   "browser_action": {
     "default_icon": "icon.png",
@@ -13,12 +13,13 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "*://*.planetminecraft.com/chat"
+    "*://*.planetminecraft.com/chat",
+      "storage"
   ],
   "content_scripts": [
       {
           "matches": ["*://*.planetminecraft.com/chat", "*://*.planetminecraft.com/chat/", "*://*.planetminecraft.com/chat/*"],
-          "js": ["thirdParty/jquery.js", "test.js"]
+          "js": ["thirdParty/jquery.js","thirdParty/jstorage.js", "test.js"]
       }
   ]
 }

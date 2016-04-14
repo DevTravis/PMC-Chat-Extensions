@@ -22,6 +22,9 @@
     </style>
     <script src="popup.js"></script>
         <!-- Compiled and minified CSS -->
+      <script src="thirdParty/jquery.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+      <script src="thirdParty/jstorage.js"></script>
   <link rel="stylesheet" href="thirdParty/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
@@ -32,8 +35,10 @@
         <div style = "width:200px;height:8px"></div>
         <br>
         <center>
-            Theme toggle:<br>
-            <a id="clearThemeButton" class="waves-effect waves-light btn-small">Clear</a> <a id="addThemeButton" class="waves-effect waves-light btn-small" style="width:30%;">Restore</a>
+            <b>Options</b><br>
+            <form action="#"><p><input type="checkbox" class="filled-in" id="toggleTheme" checked="checked" /><label for="toggleTheme" style="position:relative;align:center;">Enable/Disable Theme</label></p></form>
+            <form action="#"><p><input type="checkbox" class="filled-in" id="toggleEmotes" checked="checked" /><label for="toggleEmotes" style="position:relative;align:center;">Enable/Disable Emoticons</label></p></form>
+            <!--<a id="clearThemeButton" class="waves-effect waves-light btn-small">Clear</a> <a id="addThemeButton" class="waves-effect waves-light btn-small" style="width:30%;">Restore</a>-->
         </center>
       <br>
   </body>
