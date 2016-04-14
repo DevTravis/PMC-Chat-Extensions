@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
     baseValCheck();
     document.getElementById("toggleTheme").checked = getCurrentThemeToggleData_str();
     document.getElementById("toggleTheme").addEventListener('change', toggleTheme);
+    document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
+    document.getElementById("toggleEmotes").addEventListener('change', toggleEmotes);
 });
 
 function baseValCheck(){
@@ -52,6 +54,26 @@ function toggleTheme(){
     }
 }
 
+function toggleEmotes(){
+    //Getting the current data
+    var currData = getVal('emotesToggleData');
+    //If it's null/undefined, define it as "no" for now.
+    if(currData == null || currData == undefined || !currData){
+        setVal('emotesToggleData', "off");
+        sendVal('emotesToggleData');    //Send this to our index.js as well.
+    }
+    
+    if(currData == "on"){
+        setVal('emotesToggleData', "off");
+        sendVal('emotesToggleData');
+        document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
+    }else if(currData == "off"){
+        setVal('emotesToggleData', "on");
+        sendVal('emotesToggleData');
+        document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
+    }
+}
+
 function getVal(key){
     return $.jStorage.get(key);
 }
@@ -66,6 +88,8 @@ function setVal(key, val){
 function sendVal(key){
     sendMsg("*" + key + "-" + getVal(key));
 }
+
+function getCurrentEmotesToggleData_str(){return (getVal('emotesToggleData') == "on");}
 
 function getCurrentThemeToggleData(){
     return getVal('themeToggleData');

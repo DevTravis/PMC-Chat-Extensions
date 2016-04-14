@@ -45,15 +45,17 @@ window.onload = function(){
     };
     
     insertionQ('.messageList div').every(function(element){
-        var _msgDiv = element.firstChild;
-        var target = _msgDiv.getElementsByClassName("text")[0];
-        //Getting the actual message
-        var _msgRaw = target;
+        if(getVal('emotesToggleData') == "on"){
+            var _msgDiv = element.firstChild;
+            var target = _msgDiv.getElementsByClassName("text")[0];
+            //Getting the actual message
+            var _msgRaw = target;
         
-        if(_msgRaw != undefined){
-            //Formatting said text.
-            console.log(_msgRaw.innerHTML);
-            _msgRaw.innerHTML = text2Emote(_msgRaw.innerHTML);
+            if(_msgRaw != undefined){
+                //Formatting said text.
+                console.log(_msgRaw.innerHTML);
+                _msgRaw.innerHTML = text2Emote(_msgRaw.innerHTML);
+            }
         }
     });
 };
@@ -62,8 +64,12 @@ var rawEmotes;
 var newEmotes;
 
 function loadEmoteDictionary(){
-    rawEmotes = [":)"];
-    newEmotes = [getLink("http://i.imgur.com/NxHVnQM.png")];
+    rawEmotes =[":)",
+                ":("
+                ];
+    newEmotes =[getLink("https://raw.githubusercontent.com/DeathGameDev/PMC-Chat-Extensions/master/PMC_Chrome_Extension/emotes/smile.png"),
+                getLink("https://raw.githubusercontent.com/DeathGameDev/PMC-Chat-Extensions/master/PMC_Chrome_Extension/emotes/frown.png")
+                ];
 }
 
 function getLink(lnk){
