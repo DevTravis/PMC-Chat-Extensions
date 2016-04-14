@@ -33,6 +33,9 @@ chrome.runtime.onMessage.addListener(
     }
 );
 window.onload = function(){
+    
+    loadEmoteDictionary();
+    
     if(getVal('themeToggleData') == "on")
         doTheme();
     else
@@ -40,7 +43,42 @@ window.onload = function(){
     document.getElementById("theme").onchange = function(){
         doTheme();  
     };
+    
+    insertionQ('.messageList div').every(function(element){
+        var _msgDiv = element.firstChild;
+        var target = _msgDiv.getElementsByClassName("text")[0];
+        //Getting the actual message
+        var _msgRaw = target;
+        
+        if(_msgRaw != undefined){
+            //Formatting said text.
+            console.log(_msgRaw.innerHTML);
+            _msgRaw.innerHTML = text2Emote(_msgRaw.innerHTML);
+        }
+    });
 };
+
+var rawEmotes;
+var newEmotes;
+
+function loadEmoteDictionary(){
+    rawEmotes = [":)"];
+    newEmotes = [getLink("http://i.imgur.com/NxHVnQM.png")];
+}
+
+function getLink(lnk){
+    return "<img style=\"position:relative;width:10px;top:2px;\" src=\"" + lnk + "\">";
+}
+
+function text2Emote(txt){
+    var old = txt;
+    for(var i = 0; i < rawEmotes.length; i++){
+        var _new = old.replace(rawEmotes[i], newEmotes[i]);
+        old = _new;
+    }
+    var end = old;
+    return end;
+}
 
 function doTheme(){
     console.log("doing theme");
@@ -53,10 +91,10 @@ function doTheme(){
     var opt = sel.selectedIndex;
     var isClassic = (sel.selectedIndex == 1);
     if(isClassic){
-        injectStyles('.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: rgb(236, 240, 241);}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}.description{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}');
+        injectStyles('.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: rgb(236, 240, 241);}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}.description{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}#prefooter{background-image:none; background-color:#0F161C;}');
         console.log("isClassic = true");
     }else{
-        injectStyles('.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: rgb(0,0,0);}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}.userSpan.listName:not(.member_moderator):not(.bold){color:rgb(255,255,255)}.time{color:rgb(255,255,255)}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}label{color:rgb(255,255,255);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}');
+        injectStyles('.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: rgb(0,0,0);}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}.userSpan.listName:not(.member_moderator):not(.bold){color:rgb(255,255,255)}.time{color:rgb(255,255,255)}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}label{color:rgb(255,255,255);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}#prefooter{background-image:none; background-color:#0F161C;}.chat_context[data-theme="modern"] .messageList > .messageHolder > .message > .textContainer {background-image:none; background-color:#d9d9d9;}');
         console.log("isClassic = false");
     }
 }
@@ -71,7 +109,6 @@ function injectStyles(rule) {
 function beginsWith(needle, haystack){
     return (haystack.substr(0, needle.length) == needle);
 }
-
 
 function clearTheme(){
     $("div:contains(­)").remove();

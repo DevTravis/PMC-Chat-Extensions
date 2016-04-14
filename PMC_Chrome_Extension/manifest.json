@@ -5,6 +5,8 @@
   "description": "This extension adds themes for PMC Chat, along with a toggle for 3D heads.",
   "version": "0.35",
 
+  "update_url": "https://github.com/DeathGameDev/PMC-Chat-Extensions/raw/master/PMC_Chrome_Extension/updates.xml",
+    
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
@@ -19,7 +21,7 @@
   "content_scripts": [
       {
           "matches": ["*://*.planetminecraft.com/chat", "*://*.planetminecraft.com/chat/", "*://*.planetminecraft.com/chat/*"],
-          "js": ["thirdParty/jquery.js","thirdParty/jstorage.js", "test.js"]
+          "js": ["thirdParty/jquery.js","thirdParty/jstorage.js", "thirdParty/insQ.min.js","test.js"]
       }
   ]
 }
