@@ -1,0 +1,115 @@
+//MAIN
+
+/* Mod Stuff */
+#findDialog {
+    color: rgb(0, 0, 0);
+}
+#blacklistDialog {
+    color: rgb(0, 0, 0);
+}
+#reportsDialog {
+    color: rgb(0, 0, 0);
+}
+.mod_message{
+    color: rgb(255,255,255);
+}
+
+/* Room User Count */
+.active_stat {
+	color: #FFFFFF;
+}
+
+/* Text input box */
+.chat_context #chatBottom > textarea {
+    background-image: none;
+    background-color: rgb(44, 62, 80);
+    color: rgb(236, 240, 241);
+}
+
+/* Site buttons(Removes gradient) */
+.site_btn {
+    background-image: none;
+    background-color: #2980b9;
+}
+
+#container {
+    background-image: none;
+    background-color: #0F161C;
+}
+
+
+
+.context-menu-item {
+    color: rgb(0, 0, 0);
+}
+
+.progresstext {
+    color: rgb(0, 0, 0);
+}
+
+#level_panel {
+    color: rgb(0, 0, 0);
+}
+
+
+
+.description {
+    color: rgb(0, 0, 0);
+}
+
+
+
+.channel {
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Components:
+    Input box color{
+        .chat_context #chatBottom > textarea {
+            background-image: none;
+            background-color: rgb(44, 62, 80);
+            color: rgb(236, 240, 241);
+        }
+    }
+    
+    Text color{
+        body {
+            color: rgb(255,255,255);
+        }
+        #rule_dialog {
+            color: rgb(255,255,255);
+        }
+    }
+    
+    Background color{
+        #container {
+            background-image: none;
+            background-color: #0F161C;
+        }
+        #prefooter {
+            background-image: none;
+            background-color: #0F161C;
+        }
+    }
+    

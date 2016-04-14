@@ -46,15 +46,31 @@ window.onload = function(){
     
     insertionQ('.messageList div').every(function(element){
         if(getVal('emotesToggleData') == "on"){
+            if(element.className == "messageHolder"){
             var _msgDiv = element.firstChild;
             var target = _msgDiv.getElementsByClassName("text")[0];
             //Getting the actual message
             var _msgRaw = target;
         
+            console.log(_msgRaw.innerHTML);
             if(_msgRaw != undefined){
                 //Formatting said text.
                 //console.log(_msgRaw.innerHTML);
                 _msgRaw.innerHTML = text2Emote(_msgRaw.innerHTML);
+            }
+            }else{
+                //It's an appended message.
+                var _msgDiv = element;
+                            var target = _msgDiv.getElementsByClassName("text")[0];
+            //Getting the actual message
+            var _msgRaw = target;
+        
+            console.log(_msgRaw.innerHTML);
+            if(_msgRaw != undefined){
+                //Formatting said text.
+                //console.log(_msgRaw.innerHTML);
+                _msgRaw.innerHTML = text2Emote(_msgRaw.innerHTML);
+            }
             }
         }
     });
@@ -65,15 +81,47 @@ var newEmotes;
 
 function loadEmoteDictionary(){
     rawEmotes =[":)",
-                ":("
+                ":(",
+                ":o",
+                ":O",
+                "-_-",
+                "<3",
+                ":D",
+                ":'(",
+                ":I",
+                "B)",
+                ";)",
+                ";-)",
+                ";^)",
+                "xD",
+                "XD",
+                "D:"
                 ];
-    newEmotes =[getLink("https://raw.githubusercontent.com/DeathGameDev/PMC-Chat-Extensions/master/PMC_Chrome_Extension/emotes/smile.png"),
-                getLink("https://raw.githubusercontent.com/DeathGameDev/PMC-Chat-Extensions/master/PMC_Chrome_Extension/emotes/frown.png")
+    newEmotes =[getLink(getEmoji("smile")),
+                getLink(getEmoji("worried")),
+                getLink(getEmoji("open_mouth")),
+                getLink(getEmoji("open_mouth")),
+                getLink(getEmoji("expressionless")),
+                getLink(getEmoji("heart")),
+                getLink(getEmoji("smiley")),
+                getLink(getEmoji("cry")),
+                getLink(getEmoji("neutral_face")),
+                getLink(getEmoji("sunglasses")),
+                getLink(getEmoji("wink")),
+                getLink(getEmoji("wink")),
+                getLink(getEmoji("wink")),
+                getLink(getEmoji("laughing")),
+                getLink(getEmoji("laughing")),
+                getLink(getEmoji("anguished"))
                 ];
 }
 
+function getEmoji(id){
+    return "http://www.emoji-cheat-sheet.com/graphics/emojis/" + id + ".png";
+}
+
 function getLink(lnk){
-    return "<img style=\"position:relative;width:10px;top:2px;\" src=\"" + lnk + "\">";
+    return "<img style=\"position:relative;width:14px;top:2px;\" src=\"" + lnk + "\">";
 }
 
 function text2Emote(txt){
