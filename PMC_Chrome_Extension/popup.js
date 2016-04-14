@@ -15,6 +15,8 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
+
+
 document.addEventListener('DOMContentLoaded', function(){
     baseValCheck();
     document.getElementById("toggleTheme").checked = getCurrentThemeToggleData_str();
@@ -22,8 +24,23 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
     document.getElementById("toggleEmotes").addEventListener('change', toggleEmotes);
     
+    document.getElementById("textColorDiv").addEventListener('click', toggleTextColorDiv);
+    
     setCurrVersion();
 });
+
+var isOnScreen = true;
+
+function toggleTextColorDiv(){
+        isOnScreen = !isOnScreen;
+    var div = document.getElementById("textColorDiv");
+    if(isOnScreen)
+        $("#textColorDiv").animate({left:'0%',}, 500);
+    else
+        $("#textColorDiv").animate({left:'98%',}, 500);
+    
+
+}
 
 function setCurrVersion(){
     var manifest = chrome.runtime.getManifest();
