@@ -6,12 +6,12 @@ chrome.runtime.onMessage.addListener(
         else if(msg == "clearTheme")
             clearTheme();
         console.log("received msg in test.js, text = " + msg);
-        
+
         if(msg.length > 1){
             if(msg[0] == '*'){
                 //Example input:
                 //*KEY-VALUE
-                
+
                 //Getting the Key.
                 var _key = "";
                 for(var i = 1; i < msg.length; i++){
@@ -20,11 +20,11 @@ chrome.runtime.onMessage.addListener(
                     else if(msg[i] == '-')
                         break;
                 }
-                
+
                 //Getting the Value.
                 var startingPos = 2 + _key.length;
                 var _value = msg.substring(startingPos, msg.length);
-                
+
                 //Setting the local variable
                 setVal(_key, _value);
                 //console.log("setting " + _key + " to " + _value);
@@ -33,17 +33,17 @@ chrome.runtime.onMessage.addListener(
     }
 );
 window.onload = function(){
-    
+
     loadEmoteDictionary();
-    
+
     if(getVal('themeToggleData') == "on")
         doTheme();
     else
         console.log("deemed themeToggleData incorrect for applying the theme, value was:" + getVal('themeToggleData'));
     document.getElementById("theme").onchange = function(){
-        doTheme();  
+        doTheme();
     };
-    
+
     insertionQ('.messageList div').every(function(element){
         if(getVal('emotesToggleData') == "on"){
             if(element.className == "messageHolder"){
@@ -51,7 +51,7 @@ window.onload = function(){
             var target = _msgDiv.getElementsByClassName("text")[0];
             //Getting the actual message
             var _msgRaw = target;
-        
+
             console.log(_msgRaw.innerHTML);
             if(_msgRaw != undefined){
                 //Formatting said text.
@@ -64,7 +64,7 @@ window.onload = function(){
                             var target = _msgDiv.getElementsByClassName("text")[0];
             //Getting the actual message
             var _msgRaw = target;
-        
+
             console.log(_msgRaw.innerHTML);
             if(_msgRaw != undefined){
                 //Formatting said text.
@@ -95,7 +95,8 @@ function loadEmoteDictionary(){
                 ";^)",
                 "xD",
                 "XD",
-                "D:"
+                "D:",
+                "8=)"
                 ];
     newEmotes =[getLink(getEmoji("smile")),
                 getLink(getEmoji("worried")),
@@ -112,7 +113,8 @@ function loadEmoteDictionary(){
                 getLink(getEmoji("wink")),
                 getLink(getEmoji("laughing")),
                 getLink(getEmoji("laughing")),
-                getLink(getEmoji("anguished"))
+                getLink(getEmoji("anguished")),
+                getLink(getEmoji("skull"))
                 ];
 }
 
@@ -195,15 +197,15 @@ function doPostSetMsg(key, val){console.log("[SET-POST](" + key + ")" + "Attempt
 function sendMsg(txt){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {greeting: txt}, function(response) {
-            
+
         });
     });
 }
 
-String.prototype.replaceAll = function(str1, str2, ignore) 
+String.prototype.replaceAll = function(str1, str2, ignore)
 {
     return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
-} 
+}
 
 //Loads the iframe, gets the txt.
 function LoadFile() {
