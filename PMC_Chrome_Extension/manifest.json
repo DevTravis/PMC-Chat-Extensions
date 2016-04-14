@@ -3,7 +3,7 @@
 
   "name": "PMC Chat Extender",
   "description": "This extension adds themes for PMC Chat, along with a toggle for 3D heads.",
-  "version": "0.44",
+  "version": "0.45",
   "icons": { "16": "icon-16.png", "128": "icon-128.png" },
 
   "browser_action": {
