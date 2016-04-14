@@ -1,3 +1,12 @@
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse){
+        var _type = request.greeting;
+        if(_type == "doTheme")
+            doTheme();
+        else if(_type == "clearTheme")
+            clearTheme();
+    }
+);
 window.onload = function(){
     
     document.getElementById("theme").onchange = function(){
@@ -8,6 +17,7 @@ window.onload = function(){
 };
 
 function doTheme(){
+    console.log("doing theme");
     //Making the settings readable
     var subLabels = document.getElementsByTagName("label");
     for(var i = 0; i < subLabels.length; i++){
@@ -28,9 +38,32 @@ function doTheme(){
 function injectStyles(rule) {
   var div = $("<div />", {
     html: '&shy;<style>' + rule + '</style>'
-  }).appendTo("body");    
+  })
+  div.appendTo("body");
 }
 
 function beginsWith(needle, haystack){
     return (haystack.substr(0, needle.length) == needle);
+}
+
+
+function clearTheme(){
+    console.log("clearTheme called.");
+    var divs = document.getElementsByTagName("div");
+    for(var i = 0; i < divs.length; i++){
+        //console.log("CHECKING : " + divs[i].innerHTML);
+        if(divs[i].innerHTML.includes('­'))
+            divs[i].remove();
+    }
+}
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
 }

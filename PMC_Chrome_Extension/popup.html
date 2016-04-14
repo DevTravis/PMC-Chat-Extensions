@@ -20,18 +20,21 @@
         max-width: 400px;
       }
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
     <script src="popup.js"></script>
+        <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="thirdParty/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="thirdParty/materialize.min.js"></script>
   </head>
   <body>
-    <img src="topbar.png" style = "pointer-events:none;top:4px;position:fixed;">
-    <div style = "width:200px;height:8px"></div>
-    Hi :^)
+        <img src="topbar.png" style = "pointer-events:none;top:4px;position:fixed;">
+        <div style = "width:200px;height:8px"></div>
+        <br>
+        <center>
+            Theme toggle:<br>
+            <a id="clearThemeButton" class="waves-effect waves-light btn-small">Clear</a> <a id="addThemeButton" class="waves-effect waves-light btn-small" style="width:30%;">Restore</a>
+        </center>
+      <br>
   </body>
 </html>
