@@ -7,3 +7,33 @@
     background-color:red;
     z-index:999;
 }
+
+.backButton{
+    top:0%;
+    width:40px;
+    height:40px;
+    position:relative;
+    background-color:white;
+    cursor:pointer;
+    background-image:url('buttons/backbutton.png');
+    background-repeat:no-repeat;
+}
+
+.backButton:hover{
+    background-image:url('buttons/backbuttonh.png');
+}
+
+#textColorDiv > .backButton{
+    left:0%;
+}
+
+#goToColors{
+    width:40px;
+    height:40px;
+    position:relative;
+    background-color:red;
+    left:40%;
+    cursor:pointer;
+    background-image:url('buttons/colorbuttonh.png');
+    background-repeat:no-repeat;
+}
