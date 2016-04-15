@@ -26,21 +26,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //document.getElementById("textColorDiv").addEventListener('click', toggleTextColorDiv);
     document.getElementById("goToColors").addEventListener('click', toggleTextColorDiv);
-    document.getElementById("backbutton").addEventListener('click', toggleTextColorDiv);
+    document.getElementById("backButton").addEventListener('click', toggleTextColorDiv);
 
     setCurrVersion();
+    
+        
+    getCSSFile('dark_classic');
 });
 
-var isOnScreen = false;
+var isOnScreen = true;  //For some reason true needs to be on first.. dunno why ;-;
 
 function toggleTextColorDiv(){
-        isOnScreen = !isOnScreen;
     var div = document.getElementById("textColorDiv");
-    if(isOnScreen)
+    if(isOnScreen){
         $("#textColorDiv").animate({left:'0%',}, 500);
-    else
+        isOnScreen = false;
+    }else{
         $("#textColorDiv").animate({left:'100%',}, 500);
-
+        isOnScreen = true;
+    }
 
 }
 
@@ -142,4 +146,18 @@ function sendMsg(txt){
 
         });
     });
+}
+
+
+function getCSSFile(name){
+    var rawFile = new XMLHttpRequest();
+    rawFile.open('GET', chrome.extension.getURL("/themes/" + name + ".css"), false);
+    console.log("attempting to load " + chrome.extension.getURL("/themes/" + name + ".css"));
+    rawFile.onreadystatechange = function(){
+        if(rawFile.readyState == XMLHttpRequest.DONE && (rawFile.status === 200 || rawFile.status == 0)){
+            var allText = rawFile.responseText;
+            console.log("loaded, output: " + alLText);
+            $('#output').innerHTML = allText;
+        }
+    }
 }

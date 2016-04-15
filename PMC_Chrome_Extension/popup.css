@@ -4,7 +4,7 @@
     left:0;
     width:100%;
     height:100%;
-    background-color:red;
+    background-color:white;
     z-index:1;
 }
 
@@ -59,11 +59,11 @@ body{
     opacity: 0;
 }
 
-#backbutton img{
+#backButton img{
     -webkit-transition: all ease 0.2s;
     transition: all ease 0.2s;
 }
 
-#backbutton img:hover{
+#backButton img:hover{
     opacity: 0;
 }
