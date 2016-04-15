@@ -26,6 +26,13 @@
       #goToColors img:hover{
         opacity: 0;
       }
+      #backbutton img{
+        -webkit-transition: all ease 0.2s;
+        transition: all ease 0.2s;
+      }
+      #backbutton img:hover{
+        opacity: 0;
+      }
 
     </style>
     <script src="popup.js"></script>
@@ -70,6 +77,9 @@
           </center>
 
       <div id="textColorDiv" style="left:100%;">
+        <div id="backbutton" style="width:40px;height:40px;position:abstract;cursor:pointer;background-image:url(buttons/backbuttonh.png);background-repeat:no-repeat;">
+          <img src="buttons/backbutton.png">
+        </div>
       </div>
   </body>
 </html>
