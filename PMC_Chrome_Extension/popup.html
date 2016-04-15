@@ -26,6 +26,13 @@
       #goToColors img:hover{
         opacity: 0;
       }
+      #backbutton img{
+        -webkit-transition: all ease 0.2s;
+        transition: all ease 0.2s;
+      }
+      #backbutton img:hover{
+        opacity: 0;
+      }
 
     </style>
     <script src="popup.js"></script>
@@ -51,11 +58,11 @@
             <b><u>Options</u></b><br>
             <form action="#"><p><input type="checkbox" class="filled-in" id="toggleTheme" checked="checked" /><label for="toggleTheme" style="position:relative;align:center;">Enable/Disable Theme</label></p></form>
             <form action="#"><p><input type="checkbox" class="filled-in" id="toggleEmotes" checked="checked" /><label for="toggleEmotes" style="position:relative;align:center;">Enable/Disable Emoticons</label></p></form>
-            
             <div id="goToColors">
                 <img src="buttons/colorbutton.png">
             </div>
-            
+            <div id="goToColors" style="width:40px;height:40px;position:relative;align:center;background-color:red;left:40%;cursor:pointer;background-image:url(buttons/colorbuttonh.png);background-repeat:no-repeat;pointer-events:none;">
+            <img src="buttons/colorbutton.png"></div>
             <!--<u>Text Color:</u> <input class="jscolor" value"#FFFFFF"><br>
             <u>Main Background Color:</u> <input class="jscolor" value"#0F161C"><br>
             <u>Input Background Color:</u> <input class="jscolor" value"#2c3e50"><br>-->
@@ -63,11 +70,12 @@
         <br>
       <img src="topbar.png" style = "pointer-events:none;position:fixed;"><br>
       <center>
-      <div id="previewWindow" style="width:180px;height:200px;background-color:#0d1114;">
-      <div id="previewBorder" style="width:170px;height:160px;border-radius:4px;border: 1px solid #1f3b98;">
-      <img src="steveface.png" style="pointer-events:none;position:relative;left:-74px;top:4px;"><p id="previewChatText" style="color:rgb(255,255,255);font-size:12px;position:relative;left:-14px;top:-29px;"><b>Steve:</b> Hey there!</p></div>
-      <div id="previewChat" style="width:170px;height:40px;border-radius:4px;border: 1px solid #1f3b98;background-color:rgb(34,47,64)"></div>
-      </div>
+        <!--This is where the preview window is!-->
+        <div id="previewWindow" style="width:180px;height:200px;background-color:#0d1114;">
+        <div id="previewBorder" style="width:170px;height:160px;border-radius:4px;border: 1px solid #1f3b98;">
+        <img src="steveface.png" style="pointer-events:none;position:relative;left:-74px;top:4px;"><p id="previewChatText" style="color:rgb(255,255,255);font-size:12px;position:relative;left:-14px;top:-29px;"><b>Steve:</b> Hey there!</p></div>
+        <div id="previewChat" style="width:170px;height:40px;border-radius:4px;border: 1px solid #1f3b98;background-color:rgb(34,47,64)"></div>
+      </div> <!-- Preview window end -->
       <a style="color:lightgray;">Current Version: <div id="currVersion">X.Xx</div></a>
           </center>
 

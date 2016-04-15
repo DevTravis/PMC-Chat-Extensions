@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //document.getElementById("textColorDiv").addEventListener('click', toggleTextColorDiv);
     document.getElementById("goToColors").addEventListener('click', toggleTextColorDiv);
-    document.getElementById("backButton").addEventListener('click', toggleTextColorDiv);
+    document.getElementById("backbutton").addEventListener('click', toggleTextColorDiv);
 
     setCurrVersion();
 });
