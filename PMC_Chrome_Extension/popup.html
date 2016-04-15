@@ -19,6 +19,13 @@
         overflow: hidden;
         max-width: 400px;
       }
+      #goToColors img {
+        -webkit-transition: all ease 0.2s;
+        transition: all ease 0.2s;
+      }
+      #goToColors img:hover{
+        opacity: 0;
+      }
 
     </style>
     <script src="popup.js"></script>
@@ -44,6 +51,8 @@
             <b><u>Options</u></b><br>
             <form action="#"><p><input type="checkbox" class="filled-in" id="toggleTheme" checked="checked" /><label for="toggleTheme" style="position:relative;align:center;">Enable/Disable Theme</label></p></form>
             <form action="#"><p><input type="checkbox" class="filled-in" id="toggleEmotes" checked="checked" /><label for="toggleEmotes" style="position:relative;align:center;">Enable/Disable Emoticons</label></p></form>
+            <div id="goToColors" style="width:40px;height:40px;position:relative;align:center;background-color:red;left:40%;cursor:pointer;background-image:url(colorbuttonh.png);background-repeat:no-repeat;">
+            <img src="colorbutton.png"></div>
             <!--<u>Text Color:</u> <input class="jscolor" value"#FFFFFF"><br>
             <u>Main Background Color:</u> <input class="jscolor" value"#0F161C"><br>
             <u>Input Background Color:</u> <input class="jscolor" value"#2c3e50"><br>-->
@@ -58,7 +67,7 @@
       </div>
       <a style="color:lightgray;">Current Version: <div id="currVersion">X.Xx</div></a>
           </center>
-      
-      <div id="textColorDiv">stuff</div>
+
+      <div id="textColorDiv" style="left:100%;">stuff</div>
   </body>
 </html>

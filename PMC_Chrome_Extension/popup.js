@@ -6,9 +6,9 @@ chrome.runtime.onMessage.addListener(
             if(msg[0] == '*'){
                 //Getting what value the other script wants
                 var length = msg.length;
-                
+
                 var _key = mag.substring(1,length-1);
-                
+
                 sendMsg("*" + _key + "-" + getVal(_key));
             }
         }
@@ -23,13 +23,15 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("toggleTheme").addEventListener('change', toggleTheme);
     document.getElementById("toggleEmotes").checked = getCurrentEmotesToggleData_str();
     document.getElementById("toggleEmotes").addEventListener('change', toggleEmotes);
-    
-    document.getElementById("textColorDiv").addEventListener('click', toggleTextColorDiv);
-    
+
+    //document.getElementById("textColorDiv").addEventListener('click', toggleTextColorDiv);
+    document.getElementById("goToColors").addEventListener('click', toggleTextColorDiv);
+    document.getElementById("backButton").addEventListener('click', toggleTextColorDiv);
+
     setCurrVersion();
 });
 
-var isOnScreen = true;
+var isOnScreen = false;
 
 function toggleTextColorDiv(){
         isOnScreen = !isOnScreen;
@@ -37,8 +39,8 @@ function toggleTextColorDiv(){
     if(isOnScreen)
         $("#textColorDiv").animate({left:'0%',}, 500);
     else
-        $("#textColorDiv").animate({left:'98%',}, 500);
-    
+        $("#textColorDiv").animate({left:'100%',}, 500);
+
 
 }
 
@@ -53,18 +55,18 @@ function baseValCheck(){
         //console.log("undefined > baseValCheck");
         setCurrentThemeToggleData('on');
     }
-    
+
     sendVal('themeToggleData');
 }
 
 function toggleTheme(){
     //Getting the current theme data
     var currData = $.jStorage.get('themeToggleData');
-    
+
     //Let's see if it's on or off, or null D:
     if(currData == null)
         setVal('themeToggleData', 'on');
-    
+
     if(currData == "on"){
         sendMsg("clearTheme");
         setVal('themeToggleData', 'off');
@@ -86,7 +88,7 @@ function toggleEmotes(){
         setVal('emotesToggleData', "off");
         sendVal('emotesToggleData');    //Send this to our index.js as well.
     }
-    
+
     if(currData == "on"){
         setVal('emotesToggleData', "off");
         sendVal('emotesToggleData');
@@ -137,7 +139,7 @@ function doTheme(){
 function sendMsg(txt){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {greeting: txt}, function(response) {
-            
+
         });
     });
 }
