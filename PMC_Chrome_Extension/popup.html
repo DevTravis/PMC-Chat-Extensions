@@ -8,47 +8,20 @@
   <head>
     <title>Getting Started Extension's Popup</title>
     <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-      #goToColors img {
-        -webkit-transition: all ease 0.2s;
-        transition: all ease 0.2s;
-      }
-      #goToColors img:hover{
-        opacity: 0;
-      }
-      #backbutton img{
-        -webkit-transition: all ease 0.2s;
-        transition: all ease 0.2s;
-      }
-      #backbutton img:hover{
-        opacity: 0;
-      }
+      
 
     </style>
-    <script src="popup.js"></script>
-        <!-- Compiled and minified CSS -->
+      <script src="popup.js"></script>
       <script src="thirdParty/jquery.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
       <script src="thirdParty/jstorage.js"></script>
       <script src="thirdParty/jscolor.min.js"></script>
       <script src="thirdParty/jquery-ui/jquery-ui.min.js"></script>
+      <script src="thirdParty/materialize.min.js"></script>
       <link rel="stylesheet" src="thirdParty/jquery-ui/jquery-ui.css">
       <link rel="stylesheet" src="thirdParty/jquery-ui/jquery-ui.structure.css">
-  <link rel="stylesheet" href="thirdParty/materialize.min.css">
+      <link rel="stylesheet" href="thirdParty/materialize.min.css">
       <link rel="stylesheet" href="popup.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="thirdParty/materialize.min.js"></script>
   </head>
   <body>
         <img src="topbar.png" style = "pointer-events:none;top:4px;position:fixed;">
@@ -61,8 +34,6 @@
             <div id="goToColors">
                 <img src="buttons/colorbutton.png">
             </div>
-            <div id="goToColors" style="width:40px;height:40px;position:relative;align:center;background-color:red;left:40%;cursor:pointer;background-image:url(buttons/colorbuttonh.png);background-repeat:no-repeat;">
-            <img src="buttons/colorbutton.png"></div>
             <!--<u>Text Color:</u> <input class="jscolor" value"#FFFFFF"><br>
             <u>Main Background Color:</u> <input class="jscolor" value"#0F161C"><br>
             <u>Input Background Color:</u> <input class="jscolor" value"#2c3e50"><br>-->
@@ -80,7 +51,7 @@
           </center>
 
       <div id="textColorDiv" style="left:100%;">
-          <div class="backButton"><img src="buttons/backbutton.png"></div>
+          <div id="backButton"><img src="buttons/backbutton.png"></div>
       </div>
   </body>
 </html>
