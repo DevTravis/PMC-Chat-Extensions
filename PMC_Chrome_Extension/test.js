@@ -121,11 +121,9 @@ function loadEmoteDictionary(){
 function getEmoji(id){
     return "http://www.emoji-cheat-sheet.com/graphics/emojis/" + id + ".png";
 }
-
 function getLink(lnk){
     return "<img style=\"position:relative;width:14px;top:2px;\" src=\"" + lnk + "\">";
 }
-
 function text2Emote(txt){
     var old = txt;
     for(var i = 0; i < rawEmotes.length; i++){
@@ -146,14 +144,29 @@ function doTheme(){
     var sel = document.getElementById("theme");
     var opt = sel.selectedIndex;
     var isClassic = (sel.selectedIndex == 1);
-    if(isClassic){
-        injectStyles('.active_stat{color:#FFFFFF;}.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: rgb(236, 240, 241);}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}.description{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}#prefooter{background-image:none; background-color:#0F161C;}');
+    applyCSSViaTheme(darkTheme, isClassic);
+    /*if(isClassic){
+        applyCSS("dark_classic");
         console.log("isClassic = true");
     }else{
-        injectStyles('.active_stat{color:#FFFFFF;}.chat_context #chatBottom > textarea {    background-image: none;    background-color: rgb(44, 62, 80);    color: rgb(236, 240, 241);}.site_btn {    background-image: none;    background-color: #2980b9;}#container {    background-image: none;    background-color: #0F161C;}body {    color: #FFFFFF;}.context-menu-item {    color: rgb(0,0,0);}.progresstext {    color: rgb(0,0,0);}#level_panel {    color: rgb(0,0,0);}.userSpan.listName:not(.member_moderator):not(.bold){color:rgb(255,255,255)}.time{color:rgb(255,255,255)}#findDialog{color:rgb(0,0,0);}#blacklistDialog{color:rgb(0,0,0);}#reportsDialog{color:rgb(0,0,0);}label{color:rgb(255,255,255);}.channel{color:rgb(255,255,255);}#rule_dialog{color:rgb(0,0,0);}#prefooter{background-image:none; background-color:#0F161C;}.chat_context[data-theme="modern"] .messageList > .messageHolder > .message > .textContainer {background-image:none; background-color:#090E17; border:1px solid #000;}.chat_context[data-theme="modern"] .messageList > .messageHolder > .own-message {color:#FFFFFF;}.chat_context[data-theme="modern"] .messageList > .messageHolder > .message.own-message > .textContainer{background-color: #172131;}#urlHijackDialog{color:rgb(0,0,0);}#infractionsDialog{color:rgb(0,0,0);}.pmc_dialog{background-image:none;background-color:#172131}.pmc_dialog .pmc_dialog_content{background-image:none; background-color:rgb(44, 62, 80);}input{background-image:none; background-color:#090E17; color:rgb(255,255,255);}.pmc_dialog .pmc_dialog_buttons{background-image:none;background-color:#172131;}h1{color:#FFFFFF;}');
+        applyCSS("dark_modern");
         console.log("isClassic = false");
-    }
+    }*/
 }
+
+/* THEME CLASSING */
+var Theme = function(textColor, inputColor, backgroundColor, dialogColor, modern_messageBackground, modern_OwnMessageBackground, rightClickMenuColor){
+    this.textColor = textColor;
+    this.inputColor = inputColor;
+    this.backgroundColor = backgroundColor;
+    this.dialogColor = dialogColor;
+    this.modern_MessageBackground = modern_messageBackground;
+    this.modern_OwnMessageBackground = modern_OwnMessageBackground;
+    this.rightClickMenuColor = rightClickMenuColor;
+}
+
+var darkTheme = new Theme("#FFFFFF", "#2c3e50", "#0F161C", "#FFFFFF", "#090E17", "#172131", "#000000");
+var customTheme = new Theme("#FFFFFF", "#2c3e50", "#0F161C", "#FFFFFF", "#090E17", "#172131", "#000000");
 
 function injectStyles(rule) {
   var div = $("<div />", {
@@ -207,16 +220,67 @@ String.prototype.replaceAll = function(str1, str2, ignore)
     return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
 }
 
-//Loads the iframe, gets the txt.
-function LoadFile() {
-    var oFrame = document.getElementById("frmFile");
-    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-    while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-    var arrLines = strRawContents.split("\n");
-    alert("File " + oFrame.src + " has " + arrLines.length + " lines");
-    for (var i = 0; i < arrLines.length; i++) {
-        var curLine = arrLines[i];
-        alert("Line #" + (i + 1) + " is: '" + curLine + "'");
-    }
+function applyCSSViaTheme(theme, isClassic){
+    //Loading the custom css file
+    var loadStr = "";
+    if(isClassic)
+        loadStr = chrome.extension.getURL('themes/custom_classic.css');
+    else
+        loadStr = chrome.extension.getURL('themes/custom_modern.css');
+    
+    //Loading the custom css
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', loadStr, true);
+    xhr.onreadystatechange = function()
+    {
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+        {
+            var _css = xhr.responseText.replace(/(\r\n|\n|\r)/gm,"");
+            
+            //Replacing stuff and things.
+            _css = _css.replaceAll('[TextColor]', theme.textColor);
+            _css = _css.replaceAll('[InputColor]', theme.inputColor);
+            _css = _css.replaceAll('[BackgroundColor]', theme.backgroundColor);
+            _css = _css.replaceAll('[DialogColor]', theme.dialogColor);
+            _css = _css.replaceAll('[Modern_MessageBackground]', theme.modern_MessageBackground);
+            _css = _css.replaceAll('[Modern_OwnMessageBackground]', theme.modern_OwnMessageBackground);
+            _css = _css.replaceAll('[RightClickMenuColor]', theme.rightClickMenuColor);
+            
+            console.log("injecting css of : " + _css);
+            
+            injectStyles(_css);
+        }
+    };
+    xhr.send();
+}
+
+function _doreplace(from, to, str){
+    
+}
+
+function applyCSS(name){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', chrome.extension.getURL('themes/' + name + '.css'), true);
+    xhr.onreadystatechange = function()
+    {
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+        {
+            var m_text = xhr.responseText.replace(/(\r\n|\n|\r)/gm,"");
+            injectStyles(m_text);
+        }
+    };
+    xhr.send();
+}
+
+function loadFile(url){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function()
+    {
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+        {
+            return xhr.responseText;
+        }
+    };
+    xhr.send();
 }

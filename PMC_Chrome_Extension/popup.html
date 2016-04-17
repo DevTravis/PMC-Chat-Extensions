@@ -12,16 +12,18 @@
 
     </style>
       <script src="popup.js"></script>
-      <script src="thirdParty/jquery.js"></script>
+      <script src="thirdParty/jquery.js" type="text/javascript"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
       <script src="thirdParty/jstorage.js"></script>
-      <script src="thirdParty/jscolor.min.js"></script>
       <script src="thirdParty/jquery-ui/jquery-ui.min.js"></script>
       <script src="thirdParty/materialize.min.js"></script>
       <link rel="stylesheet" src="thirdParty/jquery-ui/jquery-ui.css">
       <link rel="stylesheet" src="thirdParty/jquery-ui/jquery-ui.structure.css">
       <link rel="stylesheet" href="thirdParty/materialize.min.css">
       <link rel="stylesheet" href="popup.css">
+      
+      <!-- Theme stuff -->
+      
   </head>
   <body>
         <img src="topbar.png" style = "pointer-events:none;top:4px;position:fixed;">
@@ -54,10 +56,26 @@
           <div id="backButton"><img src="buttons/backbutton.png"></div>
           
           <center>
-            <b><u>Options</u></b><br>
+            <b><u>Theme Settings</u></b><br>
+          
+            <!-- Theme Selector -->
+            <select id="selectedTheme">
+                <option value="Dark" selected="selected">Dark</option>
+                <option value="Custom">Custom</option>
+            </select>
           </center>
           
-          <div id="output"></div>
+          <!-- Manual Color Settings -->
+          <center>
+              <b><u>Manual Settings</u></b><br>
+              Text Color:<br><input type="color" id="textColor"><br>
+              Input Box Color:<br><input type="color" id="inputColor"><br>
+              Background Color:<br><input type="color" id="backgroundColor"><br>
+              Dialog Text Color:<br><input type="color" id="dialogColor"><br>
+              Modern Message Background:<br><input type="color" id="modern_messageBackground"><br>
+              Modern Own Message Background:<br><input type="color" id="modern_OwnMessageBackground"><br>
+              Right Click Menu Color:<br><input type="color" id="rightClickMenuColor"><br>
+          </center>
       </div>
   </body>
 </html>

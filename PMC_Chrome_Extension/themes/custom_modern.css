@@ -1,0 +1,115 @@
+.active_stat {
+    color: [TextColor];
+}
+
+.chat_context #chatBottom > textarea {
+    background-image: none;
+    background-color: [InputColor];
+    color: [TextColor];
+}
+
+.site_btn {
+    background-image: none;
+    background-color: #2980b9;
+}
+
+#container {
+    background-image: none;
+    background-color: [BackgroundColor];
+}
+
+body {
+    color: [TextColor];
+}
+
+.context-menu-item {
+    color: [RightClickMenuColor];
+}
+
+.progresstext {
+    color: rgb(0, 0, 0);
+}
+
+#level_panel {
+    color: rgb(0, 0, 0);
+}
+
+.userSpan.listName:not(.member_moderator):not(.bold) {
+    color: [TextColor];
+}
+
+.time {
+    color: [TextColor];
+}
+
+#findDialog {
+    color: [DialogColor];
+}
+
+#blacklistDialog {
+    color: [DialogColor];
+}
+
+#reportsDialog {
+    color: [DialogColor];
+}
+
+label {
+    color: [TextColor];
+}
+
+.channel {
+    color: [TextColor];
+}
+
+#rule_dialog {
+    color: [DialogColor];
+}
+
+#prefooter {
+    background-image: none;
+    background-color: [BackgroundColor];
+}
+
+.chat_context[data-theme="modern"] .messageList > .messageHolder > .message > .textContainer {
+    background-image: none;
+    background-color: [Modern_MessageBackground];
+    border: 1px solid #000;
+}
+
+.chat_context[data-theme="modern"] .messageList > .messageHolder > .message.own-message > .textContainer {
+    background-color: [Modern_OwnMessageBackground];
+}
+
+#urlHijackDialog {
+    color: [DialogColor];
+}
+
+#infractionsDialog {
+    color: [DialogColor];
+}
+
+.pmc_dialog {
+    background-image: none;
+    background-color: [BackgroundColor];
+}
+
+.pmc_dialog .pmc_dialog_content {
+    background-image: none;
+    background-color: [InputColor];
+}
+
+input {
+    background-image: none;
+    background-color: #090E17;
+    color: rgb(255, 255, 255);
+}
+
+.pmc_dialog .pmc_dialog_buttons {
+    background-image: none;
+    background-color: [BackgroundColor];
+}
+
+h1 {
+    color: #FFFFFF;
+}

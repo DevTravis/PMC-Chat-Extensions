@@ -28,13 +28,31 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById("goToColors").addEventListener('click', toggleTextColorDiv);
     document.getElementById("backButton").addEventListener('click', toggleTextColorDiv);
 
+    document.getElementById("selectedTheme").addEventListener('change', themeButtonChanged);
+    
+    var tagNames = ["textColor","inputColor","backgroundColor","dialogColor","modern_messageBackground","modern_OwnMessageBackground","rightClickMenuColor"];
+    for(var i=0;i<tagNames.length;i++)
+        document.getElementById(tagNames[i]).addEventListener("input", updateColors_input);
+    
     setCurrVersion();
     
-        
-    getCSSFile('dark_classic');
 });
 
+var currTheme = "Dark";
+
+function themeButtonChanged(){
+    currTheme = this.value;
+    console.log("theme changed..? > " + currTheme);
+    setVal("currTheme", currTheme); //Setting the value in our DB
+    sendVal("currTheme");   //Sending the value to the code running on the PMC chat page.
+}
+
 var isOnScreen = true;  //For some reason true needs to be on first.. dunno why ;-;
+
+//Updates the colors of the current theme via input.
+function updateColors_input(){
+    alert("CHANGED!");
+}
 
 function toggleTextColorDiv(){
     var div = document.getElementById("textColorDiv");
@@ -146,18 +164,4 @@ function sendMsg(txt){
 
         });
     });
-}
-
-
-function getCSSFile(name){
-    var rawFile = new XMLHttpRequest();
-    rawFile.open('GET', chrome.extension.getURL("/themes/" + name + ".css"), false);
-    console.log("attempting to load " + chrome.extension.getURL("/themes/" + name + ".css"));
-    rawFile.onreadystatechange = function(){
-        if(rawFile.readyState == XMLHttpRequest.DONE && (rawFile.status === 200 || rawFile.status == 0)){
-            var allText = rawFile.responseText;
-            console.log("loaded, output: " + alLText);
-            $('#output').innerHTML = allText;
-        }
-    }
 }

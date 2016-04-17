@@ -1,0 +1,64 @@
+.active_stat {
+    color: [TextColor];
+}
+
+.chat_context #chatBottom > textarea {
+    background-image: none;
+    background-color: [InputColor];
+    color: [TextColor];
+}
+
+.site_btn {
+    background-image: none;
+    background-color: #2980b9;
+}
+
+#container {
+    background-image: none;
+    background-color: [BackgroundColor];
+}
+
+body {
+    color: [TextColor];
+}
+
+.context-menu-item {
+    color: [RightClickMenuColor];
+}
+
+.progresstext {
+    color: rgb(0, 0, 0);
+}
+
+#level_panel {
+    color: rgb(0, 0, 0);
+}
+
+#findDialog {
+    color: [DialogColor];
+}
+
+#blacklistDialog {
+    color: [DialogColor];
+}
+
+.description {
+    color: [DialogColor];
+}
+
+#reportsDialog {
+    color: [DialogColor];
+}
+
+#rule_dialog {
+    color: [DialogColor];
+}
+
+.channel {
+    color: [TextColor];
+}
+
+#prefooter {
+    background-image: none;
+    background-color: [BackgroundColor];
+}

@@ -1,23 +1,27 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "PMC Chat Extender",
-  "description": "This extension adds themes for PMC Chat, along with a toggle for 3D heads.",
-  "version": "0.45",
-  "icons": { "16": "icon-16.png", "128": "icon-128.png" },
+    "name": "PMC Chat Extender",
+    "description": "This extension adds themes for PMC Chat, along with a toggle for 3D heads.",
+    "version": "0.45",
+    "icons": { "16": "icon-16.png", "128": "icon-128.png" },
 
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_title": "Click here!"
-  },
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "*://*.planetminecraft.com/chat",
-      "storage"
-  ],
-  "content_scripts": [
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Click here!"
+    },
+    "web_accessible_resources":[
+        "themes/custom_classic.css",
+        "themes/custom_modern.css"
+    ],
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "*://*.planetminecraft.com/chat",
+        "storage"
+    ],
+    "content_scripts": [
       {
           "matches": ["*://*.planetminecraft.com/chat", "*://*.planetminecraft.com/chat/", "*://*.planetminecraft.com/chat/*"],
           "js": ["thirdParty/jquery.js","thirdParty/jstorage.js", "thirdParty/insQ.min.js","test.js"]
