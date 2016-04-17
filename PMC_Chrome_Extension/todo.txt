@@ -1,0 +1,4 @@
+1 - Finish adding custom theme support.
+2 - Get set up on the chrome store.
+3 - Add toggle for 3D/2D chat heads.
+4 - Add feedback section(???)
